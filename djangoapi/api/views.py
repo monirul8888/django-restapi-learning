@@ -7,7 +7,7 @@ from rest_framework.renderers import JSONRenderer
 
 # Create your views here.
 
-def Student_view(request):
+def Student_views(request):
 
     st = Student.objects.all()
 
@@ -16,3 +16,16 @@ def Student_view(request):
     json_data = JSONRenderer().render(serializer.data)
 
     return HttpResponse(json_data, content_type = "application/json")
+
+
+
+def Student_view(request, pk):
+
+    st = Student.objects.get(id = pk )
+
+    serializer = StudentSerializer(st)
+
+    json_data = JSONRenderer().render(serializer.data)
+
+    return HttpResponse(json_data, content_type = "application/json")
+
