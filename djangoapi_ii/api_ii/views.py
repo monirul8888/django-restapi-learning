@@ -58,7 +58,7 @@ def insert(request):
 
         id = python_data.get("id")
         student = Student.objects.get(id=id)
-        serializer = StudentSerializer(student, data=python_data, partial=True)
+        serializer = StudentSerializer(student, data=python_data)
 
         if serializer.is_valid():
             serializer.save()
