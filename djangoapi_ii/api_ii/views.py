@@ -49,6 +49,33 @@ def insert(request):
         
         json_data = JSONRenderer().render(serializer.errors)
         return HttpResponse(json_data, content_type = "application/json")
+    
+
+    if request.method == "PUT":
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        python_data = JSONParser().parse(stream)
+
+        id = python_data.get("id")
+        student = Student.objects.get(id=id)
+        serializer = StudentSerializer(student, data=python_data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            res = {"msg" : "Data Updated Successfully"}
+
+            json_data = JSONRenderer().render(res)
+
+            return HttpResponse(json_data, content_type = "application/json")
+        
+        json_data = JSONRenderer().render(serializer.errors)
+        return HttpResponse(json_data, content_type = "application/json")
+
+
+
+
+
+
         
 
 
