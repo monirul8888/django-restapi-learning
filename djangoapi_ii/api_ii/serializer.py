@@ -1,7 +1,13 @@
 from rest_framework import serializers
 from .models import Student
 
-class StudentSerializer(serializers.Serializer):
+
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = ["student_name", "student_id", "student_dept"]
+
+""" class StudentSerializer(serializers.Serializer):
 
     student_name = serializers.CharField(max_length=25)
     student_id = serializers.IntegerField()
@@ -23,3 +29,4 @@ class StudentSerializer(serializers.Serializer):
     
 
     
+ """
