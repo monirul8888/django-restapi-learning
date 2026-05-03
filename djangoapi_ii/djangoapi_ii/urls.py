@@ -21,5 +21,6 @@ from app_ii.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
-    path("students/", student_info, name = "Students Info" )
+    path("students/", students_info, name = "Students Info" ),
+    path("students/<int:pk>", student_info, name = "Students Info" )
 ]

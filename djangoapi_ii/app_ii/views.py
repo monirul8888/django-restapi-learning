@@ -5,10 +5,19 @@ from rest_framework.renderers import JSONRenderer
 from django.http import HttpResponse
 
 
-def student_info (request):
+def students_info (request):
 
     st = Student.objects.all()
     serializer = StudentSerializer(st, many= True)
+    json_data = JSONRenderer().render(serializer.data)
+
+    return HttpResponse(json_data, content_type = "application/json")
+
+
+def student_info (request, pk):
+
+    st = Student.objects.get(id=pk)
+    serializer = StudentSerializer(st)
     json_data = JSONRenderer().render(serializer.data)
 
     return HttpResponse(json_data, content_type = "application/json")
