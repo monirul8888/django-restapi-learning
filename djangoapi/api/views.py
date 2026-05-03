@@ -82,6 +82,32 @@ def student_insert(request):
         
         data = JSONRenderer().render(serializer.errors)
         return HttpResponse( data, content_type = "application/json")
+    
+
+
+    if request.method == "DELETE":
+        json_data = request.body
+
+        stream = io.BytesIO(json_data)
+
+        python_data = JSONParser().parse(stream)
+
+        id = python_data.get("id")
+
+        st_id = Student.objects.get(id=id)
+        st_id.delete()
+
+        res = {"msg" : "Successfully Deleted"}
+
+        data = JSONRenderer().render(res)
+        
+        return HttpResponse( data, content_type = "application/json")
+        
+        
+
+
+
+
 
 
 
