@@ -21,7 +21,16 @@ from api_ii.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
-    path("students/", students_info, name = "Students Info" ),
-    path("students/<int:pk>", student_info, name = "Students Info" ),
     path("insert/", insert, name = "student Insert"),
+    path("insert/<int:pk>", insert, name = "student Insert"),
+
+
+
+
 ]
+
+"""
+path("students/", students_info, name = "Students Info" ),
+path("students/<int:pk>", student_info, name = "Students Info" ), 
+
+"""
