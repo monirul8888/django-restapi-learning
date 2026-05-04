@@ -81,6 +81,14 @@ from rest_framework.mixins import (
     
 )
 
+from rest_framework import viewsets
+
+class vi(viewsets.ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+
+
 class CRUD(RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer

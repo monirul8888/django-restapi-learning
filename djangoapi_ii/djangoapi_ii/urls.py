@@ -18,6 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from api_ii.views import *
 
+from rest_framework.routers import DefaultRouter
+
+
+router = DefaultRouter()
+
+router.register("vi", vi , basename="Student")
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
@@ -28,6 +35,8 @@ urlpatterns = [
     path('studentList/<int:pk>/', CRUD.as_view()),
     path('curd/<int:pk>/', CRUD.as_view()),
     path('curd/', CRUD.as_view()),
+
+    path("vi/", include(router.urls)),
 
 
 
