@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from .models import *
 from .serializer import *
+
 from rest_framework.decorators import api_view
+
+from rest_framework.views import APIView
 
 from rest_framework.response import Response
 
-@api_view(["GET", "POST", "PUT", "PATCH", "DELETE"])
-def insert(request, pk=None):
-    if request.method == "GET":
-
+class StudentInsert(APIView):
+    def get(self, request, pk=None, format=None):
         id = pk
         if id is not None:
             student = Student.objects.get(id=id)
@@ -21,7 +22,7 @@ def insert(request, pk=None):
 
         return Response(serializer.data)
     
-    if request.method == "POST":
+    def post(self, request, format=None):
         serializer = StudentSerializer(data = request.data)
 
         if serializer.is_valid():
@@ -31,9 +32,8 @@ def insert(request, pk=None):
         return Response(serializer.errors)
     
 
-    if request.method == "PUT":
+    def put(self, request, pk, format=None):
         id = pk
-
         st_id = Student.objects.get(pk=id)
 
         serializer = StudentSerializer(st_id, data = request.data)
@@ -43,9 +43,8 @@ def insert(request, pk=None):
         
         return Response(serializer.errors)
             
-    if request.method == "PATCH":
+    def patch(self, request, pk, format=None):
         id = pk
-
         st_id = Student.objects.get(pk=id)
 
         serializer = StudentSerializer(st_id, data = request.data, partial = True)
@@ -56,7 +55,7 @@ def insert(request, pk=None):
         return Response(serializer.errors)
     
 
-    if request.method == "DELETE":
+    def delete(self, request, pk, format=None):
         id = pk
         st_id = Student.objects.get(pk=id)
 

@@ -21,8 +21,8 @@ from api_ii.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
-    path("insert/", insert, name = "student Insert"),
-    path("insert/<int:pk>", insert, name = "student Insert"),
+    path("insert/", StudentInsert.as_view(), name = "student Insert"),
+    path("insert/<int:pk>", StudentInsert.as_view(), name = "student Insert"),
 
 
 
