@@ -71,13 +71,19 @@
 from .models import Student
 from .serializer import StudentSerializer
 from rest_framework.generics import GenericAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
 from rest_framework.mixins import (
     ListModelMixin,
     CreateModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
-    DestroyModelMixin
+    DestroyModelMixin,
+    
 )
+
+class CRUD(RetrieveUpdateDestroyAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
 
 class StudentList(GenericAPIView,
                   ListModelMixin,

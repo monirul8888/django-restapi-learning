@@ -25,7 +25,9 @@ urlpatterns = [
     # path("insert/<int:pk>", StudentInsert.as_view(), name = "student Insert"),
 
     path("studentList/", StudentList.as_view(), name= "Student List"),
-    path('studentList/<int:pk>/', StudentList.as_view()),
+    path('studentList/<int:pk>/', CRUD.as_view()),
+    path('curd/<int:pk>/', CRUD.as_view()),
+    path('curd/', CRUD.as_view()),
 
 
 
