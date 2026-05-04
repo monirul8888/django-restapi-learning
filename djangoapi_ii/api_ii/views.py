@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 
 from rest_framework.response import Response
 
-@api_view(["GET", "POST", "PUT", "PATCH"])
+@api_view(["GET", "POST", "PUT", "PATCH", "DELETE"])
 def insert(request, pk=None):
     if request.method == "GET":
 
@@ -54,6 +54,16 @@ def insert(request, pk=None):
             return Response({"msg" : "Partial Data Updated Successfully"})
         
         return Response(serializer.errors)
+    
+
+    if request.method == "DELETE":
+        id = pk
+        st_id = Student.objects.get(pk=id)
+
+        st_id.delete()
+
+        return Response({"msg" : "Data Deleted Successfully"})
+
             
 
 
