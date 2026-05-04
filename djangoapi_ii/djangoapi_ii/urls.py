@@ -24,7 +24,8 @@ urlpatterns = [
     # path("insert/", StudentInsert.as_view(), name = "student Insert"),
     # path("insert/<int:pk>", StudentInsert.as_view(), name = "student Insert"),
 
-    path("studentList/", StudentList.as_view(), name= "Student List")
+    path("studentList/", StudentList.as_view(), name= "Student List"),
+    path('studentList/<int:pk>/', StudentList.as_view()),
 
 
 
